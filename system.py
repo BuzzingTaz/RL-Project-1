@@ -30,7 +30,7 @@ wind_col = [0, 0, 0, 1, 1, 1, 2, 2, 1, 0]
 def wind_effect(col: int) -> np.ndarray:
     if wind_col[col] == 0:
         return np.array([0, 0])
-    return -np.array([wind_col + np.random.choice([-1, 0, 1]), 0])
+    return -np.array([wind_col[col] + np.random.choice([-1, 0, 1]), 0])
 
 
 # Actions: Kings moves
@@ -38,6 +38,22 @@ actions = np.array(
     [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
 )
 num_actions = actions.shape[0]
+
+
+def get_valid_actions(state: np.ndarray) -> np.ndarray:
+    valid_actions = []
+    for action in actions:
+        next_state = state + action
+        if (
+            (next_state[0] < 0)
+            or (next_state[0] >= rows)
+            or (next_state[1] < 0)
+            or (next_state[1] >= cols)
+        ):
+            continue
+        valid_actions.append(action)
+    return np.array(valid_actions)
+
 
 # Model: MDP
 mdp = np.zeros((num_states, actions.shape[0], num_states))
@@ -54,16 +70,15 @@ def add_transition(
 
 for idx in range(num_states):
     state = to_state(idx)
-    for action_idx, action in enumerate(actions):
-        if wind_col[state[1]] != 0:
-            wind = wind_col[state[1]]
+    for action_idx, action in enumerate(get_valid_actions(actions)):
+        next_state = state + action
+        if wind_col[next_state[1]] != 0:
+            wind = wind_col[next_state[1]]
             for noise in [-1, 0, 1]:
-                next_state = (
-                    state + action + (-np.array([noise + wind, 0]))
-                )  # Negative because the wind goes up
+                # Negative because the wind goes up
+                next_state -= np.array([noise + wind, 0])
                 add_transition(mdp, idx, action_idx, next_state, weight=1 / 3)
         else:
-            next_state = state + action
             add_transition(mdp, idx, action_idx, next_state)
 
 

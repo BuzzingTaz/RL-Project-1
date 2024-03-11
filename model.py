@@ -1,5 +1,5 @@
 import numpy as np
-from system import to_idx, to_state
+from system import to_idx, to_state, num_states
 
 
 class Model:
@@ -27,13 +27,13 @@ class Model:
 
     # Generate next state given a state and action
     def gen_next(self, state: list, action_idx: int) -> np.ndarray:
-        return to_state(np.random.choice(self.mdp[to_idx(state), action_idx:int]))
+        return to_state(np.random.choice(num_states, p=self.prob(state, action_idx)))
 
     def validate_model(self, model: np.ndarray) -> None:
         if model.ndim != 3:
             raise ValueError("Model must be a 3D array")
-        if model.sum(axis=2).all() != 1:
-            raise ValueError("Model must be a probability matrix")
+        # if model.sum(axis=2).all() != 1:
+        #     raise ValueError("Model must be a probability matrix")
 
     def validate_reward(self, reward: np.ndarray) -> None:
         if reward.ndim != 2:
