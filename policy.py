@@ -6,7 +6,7 @@ from system import to_idx
 
 class PolicyInit(Enum):
     GIVEN = 1
-    RANDOM = 2
+    RANDOM =  2
     DETERMINISTIC = 3
     EQUAL = 4
 
@@ -21,6 +21,7 @@ class Policy:
     ):
         self.num_states = num_states
         self.num_actions = num_actions
+        self.sa = np.zeros(num_states)
         if init is PolicyInit.RANDOM:
             self.policy = np.random.rand(self.num_states, self.num_actions)
             self.policy = (
@@ -52,6 +53,12 @@ class Policy:
 
     def gen_action_idx(self, state: list) -> int:
         return np.random.choice(self.num_actions, p=self.prob(state))
+    
+    def get_action(self, state: list) -> int:
+        return self.sa[to_idx(state)]
+    
+    def set_action(self, state: list, action: int) -> None:
+        self.sa[to_idx(state)] = action
 
     def validate(self, policy: np.ndarray) -> None:
         if not policy.shape[0] == self.num_states:
