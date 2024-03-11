@@ -22,20 +22,20 @@ class Model:
         if reward.shape[0] != self.mdp.shape[0]:
             raise ValueError("Reward and model must have the same number of states")
     
-    # Get probabilities of next state given a state and action
-    def prob(self, state, action):
-        return self.mdp[to_idx(state), action]
-    
+    # Get probabilities of next state given a state and action or
     # Get probability of next state given a state, action and next state
-    def prob(self, state, action, next_state):
+    def prob(self, state, action, next_state = None):
+        if next_state is None:
+            return self.mdp[to_idx(state), action]
+        
         return self.mdp[to_idx(state), action, to_idx(next_state)]
     
-    # Get rewards to all next states
-    def get_reward(self, state):
-        return self.reward[to_idx(state)]
-    
+    # Get rewards to all next states or
     # Get reward to a specific next state
-    def get_reward(self, state, next_state):
+    def get_reward(self, state, next_state = None):
+        if next_state is None:
+            return self.reward[to_idx(state)]
+        
         return self.reward[to_idx(state), to_idx(next_state)]
     
     # Generate next state given a state and action

@@ -5,7 +5,7 @@ import numpy as np
 # States: grid coordinates
 rows = 7
 cols = 10
-total_states = rows * cols
+num_states = rows * cols
 
 # State index conversion
 def to_idx(state : list):
@@ -16,7 +16,7 @@ def to_state(idx : int):
 
 # For episode generation 
 def gen_random_state():
-    return to_state(np.random.randint(0, total_states))
+    return to_state(np.random.randint(0, num_states))
 
 # Wind speeds
 wind_col = [0, 0, 0, 1, 1, 1, 2, 2, 1, 0]
@@ -39,18 +39,18 @@ actions = np.array([
     [1, 0],
     [1, 1]
 ])
-
+num_actions = actions.shape[0]
 
 # Model: MDP
-mdp = np.zeros((total_states, actions.shape[0], total_states))
+mdp = np.zeros((num_states, actions.shape[0], num_states))
 
-def add_transition(mdp : np.ndarray, state_idx, action_idx, next_state, weight=1):
+def add_transition(mdp : np.ndarray, state_idx : int, action_idx : int, next_state : list, weight=1.0):
     next_state[0] = max(0, min(next_state[0], rows - 1))
     next_state[1] = max(0, min(next_state[1], cols - 1))
     next_idx = to_idx(next_state)
     mdp[state_idx, action_idx, next_idx] += weight
 
-for idx in range(total_states):
+for idx in range(num_states):
     state = to_state(idx)
     for action_idx, action in enumerate(actions):
         if(wind_col[state[1]] != 0):
@@ -65,5 +65,5 @@ for idx in range(total_states):
  
 # Reward: One dimensional
 # -1 for each step, 0 for the goal 
-reward = np.full((total_states, total_states), -1)
+reward = np.full((num_states, num_states), -1)
 reward[:,to_idx([3, 7])] = 0
