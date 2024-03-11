@@ -14,6 +14,9 @@ def to_idx(state : list):
 def to_state(idx : int):
     return np.array([idx // cols, idx % cols])
 
+# For episode generation 
+def gen_random_state():
+    return to_state(np.random.randint(0, total_states))
 
 # Wind speeds
 wind_col = [0, 0, 0, 1, 1, 1, 2, 2, 1, 0]
@@ -39,19 +42,13 @@ actions = np.array([
 
 
 # Model: MDP
-mdp = np.empty((total_states, actions.shape[0]), dtype=object)
-for idx in range(total_states):
-    for action_idx in range(actions.shape[0]):
-        mdp[idx, action_idx] = np.array([])
+mdp = np.zeros((total_states, actions.shape[0], total_states))
 
 def add_transition(mdp : np.ndarray, state_idx, action_idx, next_state, weight=1):
     next_state[0] = max(0, min(next_state[0], rows - 1))
     next_state[1] = max(0, min(next_state[1], cols - 1))
     next_idx = to_idx(next_state)
-    if(next_idx == state_idx):
-        return mdp
-    mdp[idx, action_idx] = np.append(mdp[idx, action_idx], next_idx)
-    return mdp
+    mdp[state_idx, action_idx, next_idx] += weight
 
 for idx in range(total_states):
     state = to_state(idx)
@@ -60,11 +57,13 @@ for idx in range(total_states):
             wind = wind_col[state[1]]
             for noise in [-1, 0, 1]:
                 next_state = state + action + (- np.array([noise + wind, 0])) # Negative because the wind goes up
-                mdp = add_transition(mdp, idx, action_idx, next_state)
+                add_transition(mdp, idx, action_idx, next_state, weight=1/3)
         else:
             next_state = state + action
-            mdp = add_transition(mdp, idx, action_idx, next_state)
+            add_transition(mdp, idx, action_idx, next_state)
 
-
-# Reward: -1 for each step
+ 
+# Reward: One dimensional
+# -1 for each step, 0 for the goal 
 reward = np.full((total_states, total_states), -1)
+reward[:,to_idx([3, 7])] = 0

@@ -4,24 +4,41 @@ from system import to_idx, to_state
 class Model:
     def __init__(self, model : np.ndarray, reward: np.ndarray):
         self.validate_model(model)
-        self.model = model
+        self.mdp = model
         self.validate_reward(reward)
         self.reward = reward
 
     def validate_model(self, model : np.ndarray):
-        if model.ndim != 2:
-            raise ValueError("Model must be a 2D array")
+        if model.ndim != 3:
+            raise ValueError("Model must be a 3D array")
+        if model.sum(axis=2).all() != 1:
+            raise ValueError("Model must be a probability matrix")
     
     def validate_reward(self, reward : np.ndarray):
         if reward.ndim != 2:
             raise ValueError("Reward must be a 2D array")
         if reward.shape[0] != reward.shape[1]:
             raise ValueError("Reward must be a square matrix")
-        if reward.shape[0] != self.model.shape[0]:
+        if reward.shape[0] != self.mdp.shape[0]:
             raise ValueError("Reward and model must have the same number of states")
     
-    def get_next_state(self, state, action):
-        return to_state(np.random.choice(self.model[to_idx(state), action]))
-
+    # Get probabilities of next state given a state and action
+    def prob(self, state, action):
+        return self.mdp[to_idx(state), action]
+    
+    # Get probability of next state given a state, action and next state
+    def prob(self, state, action, next_state):
+        return self.mdp[to_idx(state), action, to_idx(next_state)]
+    
+    # Get rewards to all next states
+    def get_reward(self, state):
+        return self.reward[to_idx(state)]
+    
+    # Get reward to a specific next state
     def get_reward(self, state, next_state):
         return self.reward[to_idx(state), to_idx(next_state)]
+    
+    # Generate next state given a state and action
+    def gen_next(self, state, action):
+        return to_state(np.random.choice(self.mdp[to_idx(state), action]))
+    
