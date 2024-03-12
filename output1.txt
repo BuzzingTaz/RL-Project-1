@@ -1,0 +1,430 @@
+Value Iteration 1
+Delta: 1.0
+Value Function of State 0: 0.0
+Value Function of State 1: 0.0
+Value Function of State 2: 0.0
+Value Function of State 3: 0.0
+Value Function of State 4: 0.0
+Value Function of State 5: 0.0
+Value Function of State 6: 0.0
+Value Function of State 7: 0.0
+Value Function of State 8: 0.0
+Value Function of State 9: 0.0
+Value Function of State 10: 0.0
+Value Function of State 11: -1.0
+Value Function of State 12: -1.0
+Value Function of State 13: -1.0
+Value Function of State 14: -1.0
+Value Function of State 15: -1.0
+Value Function of State 16: -1.0
+Value Function of State 17: -1.0
+Value Function of State 18: -1.0
+Value Function of State 19: 0.0
+Value Function of State 20: 0.0
+Value Function of State 21: -1.0
+Value Function of State 22: -1.0
+Value Function of State 23: -1.0
+Value Function of State 24: -1.0
+Value Function of State 25: -1.0
+Value Function of State 26: -1.0
+Value Function of State 27: -1.0
+Value Function of State 28: -1.0
+Value Function of State 29: 0.0
+Value Function of State 30: 0.0
+Value Function of State 31: -1.0
+Value Function of State 32: -1.0
+Value Function of State 33: -1.0
+Value Function of State 34: -1.0
+Value Function of State 35: -1.0
+Value Function of State 36: -0.6666666666666666
+Value Function of State 37: -0.6666666666666666
+Value Function of State 38: -0.6666666666666666
+Value Function of State 39: 0.0
+Value Function of State 40: 0.0
+Value Function of State 41: -1.0
+Value Function of State 42: -1.0
+Value Function of State 43: -1.0
+Value Function of State 44: -1.0
+Value Function of State 45: -1.0
+Value Function of State 46: -0.6666666666666666
+Value Function of State 47: -1.0
+Value Function of State 48: -0.6666666666666666
+Value Function of State 49: 0.0
+Value Function of State 50: 0.0
+Value Function of State 51: -1.0
+Value Function of State 52: -1.0
+Value Function of State 53: -1.0
+Value Function of State 54: -1.0
+Value Function of State 55: -1.0
+Value Function of State 56: -0.6666666666666666
+Value Function of State 57: -0.6666666666666666
+Value Function of State 58: -0.6666666666666666
+Value Function of State 59: 0.0
+Value Function of State 60: 0.0
+Value Function of State 61: 0.0
+Value Function of State 62: 0.0
+Value Function of State 63: 0.0
+Value Function of State 64: 0.0
+Value Function of State 65: 0.0
+Value Function of State 66: 0.0
+Value Function of State 67: 0.0
+Value Function of State 68: 0.0
+Value Function of State 69: 0.0
+Value Iteration 2
+Delta: 0.6666666666666665
+Value Function of State 0: 0.0
+Value Function of State 1: 0.0
+Value Function of State 2: 0.0
+Value Function of State 3: 0.0
+Value Function of State 4: 0.0
+Value Function of State 5: 0.0
+Value Function of State 6: 0.0
+Value Function of State 7: 0.0
+Value Function of State 8: 0.0
+Value Function of State 9: 0.0
+Value Function of State 10: 0.0
+Value Function of State 11: -1.0
+Value Function of State 12: -1.0
+Value Function of State 13: -1.0
+Value Function of State 14: -1.0
+Value Function of State 15: -1.0
+Value Function of State 16: -1.0
+Value Function of State 17: -1.0
+Value Function of State 18: -1.0
+Value Function of State 19: 0.0
+Value Function of State 20: 0.0
+Value Function of State 21: -1.0
+Value Function of State 22: -1.3333333333333333
+Value Function of State 23: -1.3333333333333333
+Value Function of State 24: -1.3333333333333333
+Value Function of State 25: -1.0
+Value Function of State 26: -1.0
+Value Function of State 27: -1.0
+Value Function of State 28: -1.0
+Value Function of State 29: 0.0
+Value Function of State 30: 0.0
+Value Function of State 31: -1.0
+Value Function of State 32: -1.6666666666666665
+Value Function of State 33: -1.6666666666666665
+Value Function of State 34: -1.6666666666666665
+Value Function of State 35: -1.3333333333333333
+Value Function of State 36: -1.2222222222222223
+Value Function of State 37: -1.2222222222222223
+Value Function of State 38: -1.0
+Value Function of State 39: 0.0
+Value Function of State 40: 0.0
+Value Function of State 41: -1.0
+Value Function of State 42: -1.6666666666666665
+Value Function of State 43: -1.6666666666666665
+Value Function of State 44: -1.6666666666666665
+Value Function of State 45: -1.3333333333333333
+Value Function of State 46: -1.2222222222222223
+Value Function of State 47: -1.3333333333333333
+Value Function of State 48: -1.0
+Value Function of State 49: 0.0
+Value Function of State 50: 0.0
+Value Function of State 51: -1.0
+Value Function of State 52: -1.0
+Value Function of State 53: -1.0
+Value Function of State 54: -1.6666666666666665
+Value Function of State 55: -1.4444444444444442
+Value Function of State 56: -1.1111111111111112
+Value Function of State 57: -1.1111111111111112
+Value Function of State 58: -1.0
+Value Function of State 59: 0.0
+Value Function of State 60: 0.0
+Value Function of State 61: 0.0
+Value Function of State 62: 0.0
+Value Function of State 63: 0.0
+Value Function of State 64: 0.0
+Value Function of State 65: 0.0
+Value Function of State 66: 0.0
+Value Function of State 67: 0.0
+Value Function of State 68: 0.0
+Value Function of State 69: 0.0
+Value Iteration 3
+Delta: 0.33333333333333326
+Value Function of State 0: 0.0
+Value Function of State 1: 0.0
+Value Function of State 2: 0.0
+Value Function of State 3: 0.0
+Value Function of State 4: 0.0
+Value Function of State 5: 0.0
+Value Function of State 6: 0.0
+Value Function of State 7: 0.0
+Value Function of State 8: 0.0
+Value Function of State 9: 0.0
+Value Function of State 10: 0.0
+Value Function of State 11: -1.0
+Value Function of State 12: -1.0
+Value Function of State 13: -1.0
+Value Function of State 14: -1.0
+Value Function of State 15: -1.0
+Value Function of State 16: -1.0
+Value Function of State 17: -1.0
+Value Function of State 18: -1.0
+Value Function of State 19: 0.0
+Value Function of State 20: 0.0
+Value Function of State 21: -1.0
+Value Function of State 22: -1.3333333333333333
+Value Function of State 23: -1.3333333333333333
+Value Function of State 24: -1.3333333333333333
+Value Function of State 25: -1.0
+Value Function of State 26: -1.0
+Value Function of State 27: -1.0
+Value Function of State 28: -1.0
+Value Function of State 29: 0.0
+Value Function of State 30: 0.0
+Value Function of State 31: -1.0
+Value Function of State 32: -1.7777777777777777
+Value Function of State 33: -1.7777777777777777
+Value Function of State 34: -1.6666666666666665
+Value Function of State 35: -1.3333333333333333
+Value Function of State 36: -1.3333333333333333
+Value Function of State 37: -1.3333333333333333
+Value Function of State 38: -1.0
+Value Function of State 39: 0.0
+Value Function of State 40: 0.0
+Value Function of State 41: -1.0
+Value Function of State 42: -1.9999999999999998
+Value Function of State 43: -1.9999999999999998
+Value Function of State 44: -1.7777777777777777
+Value Function of State 45: -1.3333333333333333
+Value Function of State 46: -1.3333333333333333
+Value Function of State 47: -1.3333333333333333
+Value Function of State 48: -1.0
+Value Function of State 49: 0.0
+Value Function of State 50: 0.0
+Value Function of State 51: -1.0
+Value Function of State 52: -1.0
+Value Function of State 53: -1.0
+Value Function of State 54: -1.8888888888888886
+Value Function of State 55: -1.7407407407407407
+Value Function of State 56: -1.4074074074074074
+Value Function of State 57: -1.4074074074074074
+Value Function of State 58: -1.0
+Value Function of State 59: 0.0
+Value Function of State 60: 0.0
+Value Function of State 61: 0.0
+Value Function of State 62: 0.0
+Value Function of State 63: 0.0
+Value Function of State 64: 0.0
+Value Function of State 65: 0.0
+Value Function of State 66: 0.0
+Value Function of State 67: 0.0
+Value Function of State 68: 0.0
+Value Function of State 69: 0.0
+Value Iteration 4
+Delta: 0.0370370370370372
+Value Function of State 0: 0.0
+Value Function of State 1: 0.0
+Value Function of State 2: 0.0
+Value Function of State 3: 0.0
+Value Function of State 4: 0.0
+Value Function of State 5: 0.0
+Value Function of State 6: 0.0
+Value Function of State 7: 0.0
+Value Function of State 8: 0.0
+Value Function of State 9: 0.0
+Value Function of State 10: 0.0
+Value Function of State 11: -1.0
+Value Function of State 12: -1.0
+Value Function of State 13: -1.0
+Value Function of State 14: -1.0
+Value Function of State 15: -1.0
+Value Function of State 16: -1.0
+Value Function of State 17: -1.0
+Value Function of State 18: -1.0
+Value Function of State 19: 0.0
+Value Function of State 20: 0.0
+Value Function of State 21: -1.0
+Value Function of State 22: -1.3333333333333333
+Value Function of State 23: -1.3333333333333333
+Value Function of State 24: -1.3333333333333333
+Value Function of State 25: -1.0
+Value Function of State 26: -1.0
+Value Function of State 27: -1.0
+Value Function of State 28: -1.0
+Value Function of State 29: 0.0
+Value Function of State 30: 0.0
+Value Function of State 31: -1.0
+Value Function of State 32: -1.7777777777777777
+Value Function of State 33: -1.7777777777777777
+Value Function of State 34: -1.6666666666666665
+Value Function of State 35: -1.3333333333333333
+Value Function of State 36: -1.3333333333333333
+Value Function of State 37: -1.3333333333333333
+Value Function of State 38: -1.0
+Value Function of State 39: 0.0
+Value Function of State 40: 0.0
+Value Function of State 41: -1.0
+Value Function of State 42: -2.0
+Value Function of State 43: -1.9999999999999998
+Value Function of State 44: -1.7777777777777777
+Value Function of State 45: -1.3333333333333333
+Value Function of State 46: -1.3333333333333333
+Value Function of State 47: -1.3333333333333333
+Value Function of State 48: -1.0
+Value Function of State 49: 0.0
+Value Function of State 50: 0.0
+Value Function of State 51: -1.0
+Value Function of State 52: -1.0
+Value Function of State 53: -1.0
+Value Function of State 54: -1.9259259259259258
+Value Function of State 55: -1.7777777777777777
+Value Function of State 56: -1.4444444444444444
+Value Function of State 57: -1.4444444444444444
+Value Function of State 58: -1.0
+Value Function of State 59: 0.0
+Value Function of State 60: 0.0
+Value Function of State 61: 0.0
+Value Function of State 62: 0.0
+Value Function of State 63: 0.0
+Value Function of State 64: 0.0
+Value Function of State 65: 0.0
+Value Function of State 66: 0.0
+Value Function of State 67: 0.0
+Value Function of State 68: 0.0
+Value Function of State 69: 0.0
+Value Iteration 5
+Delta: 0
+Value Function of State 0: 0.0
+Value Function of State 1: 0.0
+Value Function of State 2: 0.0
+Value Function of State 3: 0.0
+Value Function of State 4: 0.0
+Value Function of State 5: 0.0
+Value Function of State 6: 0.0
+Value Function of State 7: 0.0
+Value Function of State 8: 0.0
+Value Function of State 9: 0.0
+Value Function of State 10: 0.0
+Value Function of State 11: -1.0
+Value Function of State 12: -1.0
+Value Function of State 13: -1.0
+Value Function of State 14: -1.0
+Value Function of State 15: -1.0
+Value Function of State 16: -1.0
+Value Function of State 17: -1.0
+Value Function of State 18: -1.0
+Value Function of State 19: 0.0
+Value Function of State 20: 0.0
+Value Function of State 21: -1.0
+Value Function of State 22: -1.3333333333333333
+Value Function of State 23: -1.3333333333333333
+Value Function of State 24: -1.3333333333333333
+Value Function of State 25: -1.0
+Value Function of State 26: -1.0
+Value Function of State 27: -1.0
+Value Function of State 28: -1.0
+Value Function of State 29: 0.0
+Value Function of State 30: 0.0
+Value Function of State 31: -1.0
+Value Function of State 32: -1.7777777777777777
+Value Function of State 33: -1.7777777777777777
+Value Function of State 34: -1.6666666666666665
+Value Function of State 35: -1.3333333333333333
+Value Function of State 36: -1.3333333333333333
+Value Function of State 37: -1.3333333333333333
+Value Function of State 38: -1.0
+Value Function of State 39: 0.0
+Value Function of State 40: 0.0
+Value Function of State 41: -1.0
+Value Function of State 42: -2.0
+Value Function of State 43: -1.9999999999999998
+Value Function of State 44: -1.7777777777777777
+Value Function of State 45: -1.3333333333333333
+Value Function of State 46: -1.3333333333333333
+Value Function of State 47: -1.3333333333333333
+Value Function of State 48: -1.0
+Value Function of State 49: 0.0
+Value Function of State 50: 0.0
+Value Function of State 51: -1.0
+Value Function of State 52: -1.0
+Value Function of State 53: -1.0
+Value Function of State 54: -1.9259259259259258
+Value Function of State 55: -1.7777777777777777
+Value Function of State 56: -1.4444444444444444
+Value Function of State 57: -1.4444444444444444
+Value Function of State 58: -1.0
+Value Function of State 59: 0.0
+Value Function of State 60: 0.0
+Value Function of State 61: 0.0
+Value Function of State 62: 0.0
+Value Function of State 63: 0.0
+Value Function of State 64: 0.0
+Value Function of State 65: 0.0
+Value Function of State 66: 0.0
+Value Function of State 67: 0.0
+Value Function of State 68: 0.0
+Value Function of State 69: 0.0
+Policy of State 0: 3.0
+Policy of State 1: 5.0
+Policy of State 2: 5.0
+Policy of State 3: 5.0
+Policy of State 4: 5.0
+Policy of State 5: 5.0
+Policy of State 6: 5.0
+Policy of State 7: 5.0
+Policy of State 8: 5.0
+Policy of State 9: 3.0
+Policy of State 10: 5.0
+Policy of State 11: 0.0
+Policy of State 12: 0.0
+Policy of State 13: 0.0
+Policy of State 14: 0.0
+Policy of State 15: 0.0
+Policy of State 16: 0.0
+Policy of State 17: 0.0
+Policy of State 18: 0.0
+Policy of State 19: 5.0
+Policy of State 20: 5.0
+Policy of State 21: 0.0
+Policy of State 22: 2.0
+Policy of State 23: 1.0
+Policy of State 24: 0.0
+Policy of State 25: 2.0
+Policy of State 26: 1.0
+Policy of State 27: 0.0
+Policy of State 28: 0.0
+Policy of State 29: 5.0
+Policy of State 30: 5.0
+Policy of State 31: 0.0
+Policy of State 32: 2.0
+Policy of State 33: 1.0
+Policy of State 34: 2.0
+Policy of State 35: 2.0
+Policy of State 36: 1.0
+Policy of State 37: 0.0
+Policy of State 38: 2.0
+Policy of State 39: 5.0
+Policy of State 40: 5.0
+Policy of State 41: 0.0
+Policy of State 42: 0.0
+Policy of State 43: 2.0
+Policy of State 44: 2.0
+Policy of State 45: 2.0
+Policy of State 46: 1.0
+Policy of State 47: 0.0
+Policy of State 48: 2.0
+Policy of State 49: 5.0
+Policy of State 50: 5.0
+Policy of State 51: 0.0
+Policy of State 52: 5.0
+Policy of State 53: 5.0
+Policy of State 54: 5.0
+Policy of State 55: 2.0
+Policy of State 56: 2.0
+Policy of State 57: 1.0
+Policy of State 58: 2.0
+Policy of State 59: 5.0
+Policy of State 60: 3.0
+Policy of State 61: 5.0
+Policy of State 62: 5.0
+Policy of State 63: 5.0
+Policy of State 64: 5.0
+Policy of State 65: 5.0
+Policy of State 66: 5.0
+Policy of State 67: 5.0
+Policy of State 68: 5.0
+Policy of State 69: 3.0
