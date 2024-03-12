@@ -13,8 +13,7 @@ class Model:
     # Get probability of next state given a state, action and next state
     def prob(self, state: list, action_idx: int, next_state=None) -> np.ndarray | float:
         if next_state is None:
-            return self.mdp[to_idx(state), action_idx]
-
+            return self.mdp[to_idx(state), action_idx]    
         return self.mdp[to_idx(state), action_idx, to_idx(next_state)]
 
     # Get rewards to all next states or

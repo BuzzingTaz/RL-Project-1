@@ -42,8 +42,8 @@ num_actions = actions.shape[0]
 
 def get_valid_actions(state: np.ndarray) -> np.ndarray:
     valid_actions = []
-    for action in actions:
-        next_state = state + action
+    for i in range(num_actions):
+        next_state = state + actions[i]
         if (
             (next_state[0] < 0)
             or (next_state[0] >= rows)
@@ -51,7 +51,7 @@ def get_valid_actions(state: np.ndarray) -> np.ndarray:
             or (next_state[1] >= cols)
         ):
             continue
-        valid_actions.append(action)
+        valid_actions.append(actions[i])
     return np.array(valid_actions)
 
 
@@ -70,7 +70,7 @@ def add_transition(
 
 for idx in range(num_states):
     state = to_state(idx)
-    for action_idx, action in enumerate(get_valid_actions(actions)):
+    for action_idx, action in enumerate(get_valid_actions(state)):
         next_state = state + action
         if wind_col[next_state[1]] != 0:
             wind = wind_col[next_state[1]]
