@@ -6,10 +6,11 @@ import numpy as np
 rows = 7
 cols = 10
 num_states = rows * cols
+states = np.array([[i, j] for i in range(rows) for j in range(cols)])
 
 
 # State index conversion
-def to_idx(state: list) -> int:
+def to_idx(state: np.ndarray | list) -> int:
     return state[0] * cols + state[1]
 
 
@@ -24,7 +25,7 @@ def gen_random_state() -> np.ndarray:
 
 # Wind speeds
 wind_col = [0, 0, 0, 1, 1, 1, 2, 2, 1, 0]
-
+# wind_col = [0]*cols
 
 # For episode generation
 def wind_effect(col: int) -> np.ndarray:
@@ -40,8 +41,8 @@ actions = np.array(
 num_actions = actions.shape[0]
 
 
-def get_valid_actions(state: np.ndarray) -> np.ndarray:
-    valid_actions = []
+def get_valid_actions(state: np.ndarray, idx: bool = False) -> np.ndarray:
+    valid_actions_idx = []
     for i in range(num_actions):
         next_state = state + actions[i]
         if (
@@ -51,8 +52,10 @@ def get_valid_actions(state: np.ndarray) -> np.ndarray:
             or (next_state[1] >= cols)
         ):
             continue
-        valid_actions.append(actions[i])
-    return np.array(valid_actions)
+        valid_actions_idx.append(i)
+    if(idx):
+        return np.array(valid_actions_idx)
+    return actions[valid_actions_idx]
 
 
 # Model: MDP
@@ -60,7 +63,7 @@ mdp = np.zeros((num_states, actions.shape[0], num_states))
 
 
 def add_transition(
-    mdp: np.ndarray, state_idx: int, action_idx: int, next_state: list, weight=1.0
+    mdp: np.ndarray, state_idx: int, action_idx: int, next_state: np.ndarray, weight=1.0
 ) -> None:
     next_state[0] = max(0, min(next_state[0], rows - 1))
     next_state[1] = max(0, min(next_state[1], cols - 1))
@@ -70,8 +73,8 @@ def add_transition(
 
 for idx in range(num_states):
     state = to_state(idx)
-    for action_idx, action in enumerate(get_valid_actions(state)):
-        next_state = state + action
+    for action_idx in get_valid_actions(state, idx=True):
+        next_state = state + actions[action_idx]
         if wind_col[next_state[1]] != 0:
             wind = wind_col[next_state[1]]
             for noise in [-1, 0, 1]:
@@ -85,4 +88,4 @@ for idx in range(num_states):
 # Reward: One dimensional
 # -1 for each step, 0 for the goal
 reward = np.full((num_states, num_states), -1)
-reward[:, to_idx([3, 7])] = 0
+reward[:, to_idx([3, 7])] = 10 

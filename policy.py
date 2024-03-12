@@ -1,7 +1,7 @@
 from enum import Enum
 import numpy as np
 
-from system import to_idx
+from system import states, to_idx, get_valid_actions
 
 
 class PolicyInit(Enum):
@@ -21,14 +21,16 @@ class Policy:
     ):
         self.num_states = num_states
         self.num_actions = num_actions
-        self.sa = np.zeros(num_states)
+        self.sa = np.zeros(num_states, dtype=int)
         if init is PolicyInit.RANDOM:
             self.policy = np.random.rand(self.num_states, self.num_actions)
+            self.purge_invalid_actions()
             self.policy = (
                 self.policy / np.sum(self.policy, axis=1)[:, None]
             )  # Normalize
         elif init is PolicyInit.EQUAL:
             self.policy = np.ones((self.num_states, self.num_actions))
+            self.purge_invalid_actions()
             self.policy = (
                 self.policy / np.sum(self.policy, axis=1)[:, None]
             )  # Normalize
@@ -43,24 +45,35 @@ class Policy:
         else:
             raise ValueError("Invalid policy initialization")
 
-    def prob(self, state: list, action: int | None = None) -> np.ndarray | float:
+    def prob(self, state: np.ndarray, action: int | None = None) -> np.ndarray | float:
         if action is None:
             return self.policy[to_idx(state)]
         return self.policy[to_idx(state), action]
 
-    def update(self, state: list, action: int, prob) -> None:
+    def update(self, state: np.ndarray, action: int, prob) -> None:
         self.policy[to_idx(state), action] = prob
 
-    def gen_action_idx(self, state: list) -> int:
+    def gen_action_idx(self, state: np.ndarray) -> int:
         return np.random.choice(self.num_actions, p=self.prob(state))
     
-    def get_action(self, state: list) -> int:
+    def get_action(self, state: np.ndarray) -> int:
         return self.sa[to_idx(state)]
     
-    def set_action(self, state: list, action: int) -> None:
+    def set_action(self, state: np.ndarray, action: int) -> None:
         self.sa[to_idx(state)] = action
 
+    def purge_invalid_actions(self, policy=None) -> None:
+        for s in states:
+            valid_actions_idx = set(get_valid_actions(s, idx=True))
+            for a in range(self.num_actions):
+                if a not in valid_actions_idx:
+                    if(policy is not None):
+                        policy[to_idx(s), a] = 0
+                    else:
+                        self.policy[to_idx(s), a] = 0
+
     def validate(self, policy: np.ndarray) -> None:
+        self.purge_invalid_actions(policy)
         if not policy.shape[0] == self.num_states:
             raise ValueError("Given policy does not match the number of states")
         if not policy.shape[1] == self.num_actions:
