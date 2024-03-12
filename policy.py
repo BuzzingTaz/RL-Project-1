@@ -37,7 +37,7 @@ class Policy:
         elif init is PolicyInit.DETERMINISTIC:
             self.policy = np.zeros((self.num_states, self.num_actions))
             for s in self.policy:
-                s[np.random.randint(self.num_actions)] = 1
+                s[np.random.choice(get_valid_actions(s))] = 1
         elif init is PolicyInit.GIVEN:
             assert given_policy is not None
             self.validate(given_policy)
