@@ -1,4 +1,5 @@
 from enum import Enum
+from multiprocessing import Value
 import numpy as np
 
 from system import states, to_idx, get_valid_actions
@@ -47,7 +48,13 @@ class Policy:
             self.policy = np.zeros((self.num_states, self.num_actions))
         else:
             raise ValueError("Invalid policy initialization")
-
+        
+        for s in states:
+            try:
+                self.set_action(s, self.gen_action_idx(s))
+            except ValueError as e:
+                print(f"sussy prob: {self.prob(s)}")
+                raise e 
     def prob(self, state: np.ndarray, action: int | None = None) -> np.ndarray | float:
         if action is None:
             return self.policy[to_idx(state)]
@@ -63,6 +70,8 @@ class Policy:
         return self.sa[to_idx(state)]
     
     def set_action(self, state: np.ndarray, action: int) -> None:
+        if action not in get_valid_actions(state, idx=True):
+            raise ValueError(f"Invalid action {action} for given state {state}")
         self.sa[to_idx(state)] = action
 
     def purge_invalid_actions(self, policy=None) -> None:
