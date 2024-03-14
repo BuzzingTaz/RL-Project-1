@@ -1,4 +1,5 @@
 import numpy as np
+from requests import get
 
 # System description
 
@@ -11,17 +12,12 @@ t_state = np.array([3, 7])  # Terminal state
 
 
 # State index conversion
-def to_idx(state: np.ndarray | list) -> int:
+def to_idx(state: np.ndarray | list | tuple) -> int:
     return state[0] * cols + state[1]
 
 
 def to_state(idx: int) -> np.ndarray:
     return np.array([idx // cols, idx % cols])
-
-
-# For episode generation
-def gen_random_state() -> np.ndarray:
-    return to_state(np.random.randint(0, num_states))
 
 
 # Wind speeds
@@ -41,6 +37,21 @@ actions = np.array(
     [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
 )
 num_actions = actions.shape[0]
+
+
+# For episode generation
+def gen_random_state() -> np.ndarray:
+    return to_state(np.random.randint(0, num_states))
+
+
+def gen_random_action(state: np.ndarray) -> int:
+    return np.random.choice(get_valid_actions(state, idx=True))
+
+
+def gen_random_sa() -> tuple[np.ndarray, int]:
+    state = gen_random_state()
+    action = gen_random_action(state)
+    return state, action
 
 
 def get_valid_actions(state: np.ndarray, idx: bool = False) -> np.ndarray:
