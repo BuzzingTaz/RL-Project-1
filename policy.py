@@ -9,6 +9,7 @@ class PolicyInit(Enum):
     RANDOM =  2
     DETERMINISTIC = 3
     EQUAL = 4
+    ZERO = 5
 
 
 class Policy:
@@ -42,6 +43,8 @@ class Policy:
             assert given_policy is not None
             self.validate(given_policy)
             self.policy = given_policy
+        elif init is PolicyInit.ZERO:
+            self.policy = np.zeros((self.num_states, self.num_actions))
         else:
             raise ValueError("Invalid policy initialization")
 
@@ -72,7 +75,9 @@ class Policy:
                     else:
                         self.policy[to_idx(s), a] = 0
 
-    def validate(self, policy: np.ndarray) -> None:
+    def validate(self, policy = None) -> None:
+        if(policy is None):
+            policy = self.policy
         self.purge_invalid_actions(policy)
         if not policy.shape[0] == self.num_states:
             raise ValueError("Given policy does not match the number of states")
