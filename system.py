@@ -1,5 +1,4 @@
 import numpy as np
-from requests import get
 
 # System description
 
