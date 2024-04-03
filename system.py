@@ -31,9 +31,19 @@ def wind_effect(col: int) -> np.ndarray:
     return -np.array([wind_col[col] + np.random.choice([-1, 0, 1]), 0])
 
 
-# Actions: Kings moves
+# Actions: Kings moves + Stay in place
 actions = np.array(
-    [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
+    [
+        [-1, -1],
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1],
+        [0, 0],
+    ]
 )
 num_actions = actions.shape[0]
 
@@ -54,8 +64,22 @@ def gen_random_sa() -> tuple[np.ndarray, int]:
 
 
 def get_valid_actions(state: np.ndarray, idx: bool = False) -> np.ndarray:
+    """Returns a list (or indices if idx=True) of valid actions for a given state.
+
+    Args:
+        state (np.ndarray): state
+        idx (bool, optional): Whether to return indices. Defaults to False.
+
+    Returns:
+        np.ndarray: List of valid actions or indices
+    """
+    if (state == t_state).all():
+        if idx:
+            return np.array([num_actions - 1])
+        return np.array([0, 0])
+
     valid_actions_idx = []
-    for i in range(num_actions):
+    for i in range(num_actions - 1):
         next_state = state + actions[i]
         if (
             (next_state[0] < 0)
@@ -81,9 +105,13 @@ def add_transition(
 
 
 def init_mdp(num_states: int, num_actions: int, wind_col: list[int]) -> np.ndarray:
-    mdp = np.zeros((num_states, actions.shape[0], num_states))
+    mdp = np.zeros((num_states, num_actions, num_states))
     for idx in range(num_states):
         state = to_state(idx)
+        if (state == t_state).all():
+            add_transition(mdp, idx, num_actions - 1, state)
+            continue
+
         for action_idx in get_valid_actions(state, idx=True):
             next_state = state + actions[action_idx]
             if wind_col[next_state[1]] != 0:
@@ -97,9 +125,6 @@ def init_mdp(num_states: int, num_actions: int, wind_col: list[int]) -> np.ndarr
     return mdp
 
 
-mdp = init_mdp(num_states, num_actions, wind_col)
-
-
 # Reward: One dimensional
 # -1 for each step, 0 for the goal
 def init_reward(
@@ -107,7 +132,5 @@ def init_reward(
 ) -> np.ndarray:
     reward = np.full((num_states, num_states), -1)
     reward[:, to_idx(t_state)] = t_reward
+    reward[to_idx(t_state), to_idx(t_state)] = 0
     return reward
-
-
-reward = init_reward(num_states, t_state)

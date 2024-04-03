@@ -1,5 +1,5 @@
 import numpy as np
-from system import to_idx, to_state, num_states
+from system import to_idx, to_state, num_states, rows, cols
 
 
 class Model:
@@ -29,8 +29,11 @@ class Model:
         return self.reward[to_idx(state), to_idx(next_state)]
 
     # Generate next state given a state and action
-    def gen_next(self, state: np.ndarray, action_idx: int) -> np.ndarray:
-        return to_state(np.random.choice(num_states, p=self.prob(state, action_idx)))
+    def gen_next(self, state: np.ndarray, action_idx: int, astuple=False) -> np.ndarray:
+        s_idx = np.random.choice(num_states, p=self.prob(state, action_idx))
+        if(astuple):
+           return (s_idx//cols, s_idx%cols) 
+        return to_state(s_idx)
 
     def validate_model(self, model: np.ndarray) -> None:
         if model.ndim != 3:

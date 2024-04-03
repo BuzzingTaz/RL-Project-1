@@ -1,5 +1,4 @@
 from enum import Enum
-from multiprocessing import Value
 import numpy as np
 
 from system import states, to_idx, get_valid_actions
@@ -10,7 +9,6 @@ class PolicyInit(Enum):
     RANDOM =  2
     DETERMINISTIC = 3
     EQUAL = 4
-    ZERO = 5
 
 
 class Policy:
@@ -24,28 +22,28 @@ class Policy:
         self.num_states = num_states
         self.num_actions = num_actions
         self.sa = np.zeros(num_states, dtype=int)
-        if init is PolicyInit.RANDOM:
+        self.policy_type = init
+
+        if self.policy_type is PolicyInit.RANDOM:
             self.policy = np.random.rand(self.num_states, self.num_actions)
             self.purge_invalid_actions()
             self.policy = (
                 self.policy / np.sum(self.policy, axis=1)[:, None]
             )  # Normalize
-        elif init is PolicyInit.EQUAL:
+        elif self.policy_type is PolicyInit.EQUAL:
             self.policy = np.ones((self.num_states, self.num_actions))
             self.purge_invalid_actions()
             self.policy = (
                 self.policy / np.sum(self.policy, axis=1)[:, None]
             )  # Normalize
-        elif init is PolicyInit.DETERMINISTIC:
+        elif self.policy_type is PolicyInit.DETERMINISTIC:
             self.policy = np.zeros((self.num_states, self.num_actions))
             for s in self.policy:
                 s[np.random.choice(get_valid_actions(s))] = 1
-        elif init is PolicyInit.GIVEN:
+        elif self.policy_type is PolicyInit.GIVEN:
             assert given_policy is not None
             self.validate(given_policy)
             self.policy = given_policy
-        elif init is PolicyInit.ZERO:
-            self.policy = np.zeros((self.num_states, self.num_actions))
         else:
             raise ValueError("Invalid policy initialization")
         
@@ -54,7 +52,8 @@ class Policy:
                 self.set_action(s, self.gen_action_idx(s))
             except ValueError as e:
                 print(f"sussy prob: {self.prob(s)}")
-                raise e 
+                raise e
+            
     def prob(self, state: np.ndarray, action: int | None = None) -> np.ndarray | float:
         if action is None:
             return self.policy[to_idx(state)]
