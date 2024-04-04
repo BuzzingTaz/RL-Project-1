@@ -129,7 +129,7 @@ def init_mdp(num_states: int, num_actions: int, wind_col: list[int]) -> np.ndarr
 # Reward: One dimensional
 # -1 for each step, 0 for the goal
 def init_reward(
-    num_states: int, t_state: np.ndarray = t_state, t_reward=20
+    num_states: int, t_state: np.ndarray = t_state, t_reward=0
 ) -> np.ndarray:
     reward = np.full((num_states, num_states), -1)
     reward[:, to_idx(t_state)] = t_reward

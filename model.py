@@ -1,5 +1,5 @@
 import numpy as np
-from system import to_idx, to_state, num_states, rows, cols
+from system import to_idx, to_state, num_states, cols
 
 
 class Model:
