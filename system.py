@@ -8,6 +8,7 @@ cols = 10
 num_states = rows * cols
 states = np.array([[i, j] for i in range(rows) for j in range(cols)])
 t_state = np.array([3, 7])  # Terminal state
+s_state = np.array([3, 0])  # Start state 
 
 
 # State index conversion
