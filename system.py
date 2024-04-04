@@ -55,7 +55,7 @@ def gen_random_state() -> np.ndarray:
 
 
 def gen_random_action(state: np.ndarray) -> int:
-    return np.random.choice(get_valid_actions(state, idx=True))
+    return np.random.choice(get_valid_actions(state))
 
 
 def gen_random_sa() -> tuple[np.ndarray, int]:
@@ -63,8 +63,8 @@ def gen_random_sa() -> tuple[np.ndarray, int]:
     action = gen_random_action(state)
     return state, action
 
-
-def get_valid_actions(state: np.ndarray, idx: bool = False) -> np.ndarray:
+valid_actions_cache = {}
+def get_valid_actions(state: np.ndarray) -> np.ndarray:
     """Returns a list (or indices if idx=True) of valid actions for a given state.
 
     Args:
@@ -74,10 +74,15 @@ def get_valid_actions(state: np.ndarray, idx: bool = False) -> np.ndarray:
     Returns:
         np.ndarray: List of valid actions or indices
     """
+    state_idx = to_idx(state)
+    # Cache
+    if(state_idx in valid_actions_cache):
+        return valid_actions_cache[state_idx]
+    
+    # Terminal state
     if (state == t_state).all():
-        if idx:
-            return np.array([num_actions - 1])
-        return np.array([0, 0])
+        valid_actions_cache[state_idx] = np.array([num_actions - 1])
+        return np.array([num_actions - 1])
 
     valid_actions_idx = []
     for i in range(num_actions - 1):
@@ -90,9 +95,9 @@ def get_valid_actions(state: np.ndarray, idx: bool = False) -> np.ndarray:
         ):
             continue
         valid_actions_idx.append(i)
-    if idx:
-        return np.array(valid_actions_idx)
-    return actions[valid_actions_idx]
+
+    valid_actions_cache[state_idx] = np.array(valid_actions_idx)
+    return np.array(valid_actions_idx)
 
 
 # Model: MDP
@@ -113,7 +118,7 @@ def init_mdp(num_states: int, num_actions: int, wind_col: list[int]) -> np.ndarr
             add_transition(mdp, idx, num_actions - 1, state)
             continue
 
-        for action_idx in get_valid_actions(state, idx=True):
+        for action_idx in get_valid_actions(state):
             next_state = state + actions[action_idx]
             if wind_col[next_state[1]] != 0:
                 wind = wind_col[next_state[1]]

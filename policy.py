@@ -1,8 +1,16 @@
 from enum import Enum
 import numpy as np
 
-from system import states, to_idx, get_valid_actions
+from system import states, num_actions, to_idx, get_valid_actions
 
+def ch_egreedy(epsilon, Q, s):
+    valid_actions = get_valid_actions(s)
+    
+    p = np.zeros(num_actions)
+    p[valid_actions] = epsilon / valid_actions.shape[0]
+    p[valid_actions[np.argmax(Q[to_idx(s)][valid_actions])]] += 1 - epsilon
+
+    return np.random.choice(num_actions, p=p)
 
 class PolicyInit(Enum):
     GIVEN = 1
@@ -69,13 +77,13 @@ class Policy:
         return self.sa[to_idx(state)]
     
     def set_action(self, state: np.ndarray, action: int) -> None:
-        if action not in get_valid_actions(state, idx=True):
+        if action not in get_valid_actions(state):
             raise ValueError(f"Invalid action {action} for given state {state}")
         self.sa[to_idx(state)] = action
 
     def purge_invalid_actions(self, policy=None) -> None:
         for s in states:
-            valid_actions_idx = set(get_valid_actions(s, idx=True))
+            valid_actions_idx = set(get_valid_actions(s))
             for a in range(self.num_actions):
                 if a not in valid_actions_idx:
                     if(policy is not None):
