@@ -1,5 +1,7 @@
 # RL Project 1 - Team 14
 
+*most up to date code can be found [here](https://github.com/BuzzingTaz/RL-Project-1)*
+
 ## Project: Windy Gridworld
 
 This project is a Reinforcement Learning (RL) solution for the Windy Gridworld problem.
