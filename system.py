@@ -120,8 +120,8 @@ def init_mdp(num_states: int, num_actions: int, wind_col: list[int]) -> np.ndarr
 
         for action_idx in get_valid_actions(state):
             next_state = state + actions[action_idx]
-            if wind_col[next_state[1]] != 0:
-                wind = wind_col[next_state[1]]
+            if wind_col[state[1]] != 0:
+                wind = wind_col[state[1]]
                 for noise in [-1, 0, 1]:
                     # Negative because the wind goes up
                     winded_state = next_state - np.array([noise + wind, 0])
